@@ -1,11 +1,12 @@
 import abilities.*;
+import spells.AquaSplash;
 import units.*;
 import actions.*;
 import states.*;
 import exceptions.*;
 
 public class Main {
-    public static void main(String[] args) throws InvalidTransformException, HasNotSuchAbilityException {
+    public static void main(String[] args) throws Throwable {
         Soldier knight = new Soldier("Borys");
         Soldier arthas = new Soldier("Arthas");
 
@@ -47,6 +48,18 @@ public class Main {
 
         knight.attack(arthas);
         System.out.println(arthas);
+
+        System.out.println("----------------------------------");
+        Wizard sorc = new Wizard("Sorcerer");
+
+        System.out.println(sorc);
+
+        sorc.showAllSpells();
+
+        sorc.setAttackSpell("AquaSplash");
+        System.out.println(knight);
+        sorc.cast(knight);
+        System.out.println(knight);
 
     }
 }

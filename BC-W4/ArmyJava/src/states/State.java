@@ -1,5 +1,7 @@
 package states;
 
+import exceptions.OutOfManaException;
+
 public class State {
     protected int hitPoints;
     protected int hitPointsLimit;
@@ -8,6 +10,8 @@ public class State {
     protected String name;
     protected String title;
     protected String type;
+    protected int manaPoints = 0;
+    protected int manaPointsLimit = 0;
 
     public State(String name, int hp, int dmg, double magicResist, String title, String type) {
         this.hitPoints = hp;
@@ -85,6 +89,14 @@ public class State {
         if ( this.hitPoints > this.hitPointsLimit ) {
             this.hitPoints = this.hitPointsLimit;
         }
+    }
+
+    public int getManaPoints() throws OutOfManaException {
+        throw new OutOfManaException();
+    }
+
+    public void spendMana(int mp) throws OutOfManaException {
+        throw new OutOfManaException();
     }
 
     public String toString() {

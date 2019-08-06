@@ -3,8 +3,6 @@ package states;
 import exceptions.*;
 
 public class MagicState extends State {
-    protected int manaPoints;
-    protected int manaPointsLimit;
 
     public MagicState(String name, int hp, int mp, int dmg, double magicResist, String title, String type) {
         super(name, hp, dmg, magicResist, title, type);
@@ -12,7 +10,7 @@ public class MagicState extends State {
         this.manaPointsLimit = this.manaPoints;
     }
 
-    public int getManaPoints() {
+    public int getManaPoints() throws OutOfManaException {
         return this.manaPoints;
     }
 
