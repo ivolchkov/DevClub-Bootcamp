@@ -8,6 +8,10 @@ public class WindVortex extends Spell {
         super("WindVortex", 30, 40, true);
     }
 
+    public WindVortex(int actionPoints) {
+        super("WindVortex", 30, actionPoints, true);
+    }
+
     public void action(Unit enemy) throws InvalidCastException {
         enemy.takeMagicDamage(this.actionPoints);
     }

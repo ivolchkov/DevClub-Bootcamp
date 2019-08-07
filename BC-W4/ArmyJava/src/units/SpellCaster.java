@@ -15,14 +15,6 @@ public abstract class SpellCaster extends Unit {
         super(name, hp, dmg, magicResist, title, type);
         this.magicAbility = new MagicAbility(this);
         this.state = new MagicState(name, hp, mp, dmg, magicResist, title, type);
-
-        this.addSpell(new AquaSplash());
-        this.addSpell(new DragonFlame());
-        this.addSpell(new Fireball());
-        this.addSpell(new WindVortex());
-        this.addSpell(new LesserHeal());
-        this.addSpell(new GreaterHeal());
-        this.addSpell(new KissOfLight());
     }
 
     public void showAllSpells() {

@@ -8,6 +8,10 @@ public class DragonFlame extends Spell {
         super("DragonFlame", 55, 80, true);
     }
 
+    public DragonFlame(int actionPoints) {
+        super("DragonFlame", 55, actionPoints, true);
+    }
+
     public void action(Unit enemy) throws InvalidCastException {
         enemy.takeMagicDamage(this.actionPoints);
     }

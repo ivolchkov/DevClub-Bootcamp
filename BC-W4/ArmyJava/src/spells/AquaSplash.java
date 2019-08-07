@@ -8,6 +8,10 @@ public class AquaSplash extends Spell {
         super("AquaSplash", 45, 65, true);
     }
 
+    public AquaSplash(int actionPoints) {
+        super("AquaSplash", 45, actionPoints, true);
+    }
+
     public void action(Unit enemy) throws InvalidCastException {
         enemy.takeMagicDamage(this.actionPoints);
     }

@@ -8,6 +8,10 @@ public class LesserHeal extends Spell {
         super("LesserHeal", 30, 40, false);
     }
 
+    public LesserHeal(int actionPoints) {
+        super("LesserHeal", 30, actionPoints, false);
+    }
+
     public void action(Unit enemy) throws InvalidCastException {
         throw new InvalidCastException();
     }
