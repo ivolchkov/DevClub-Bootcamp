@@ -16,7 +16,4 @@ public class WindVortex extends Spell {
         enemy.takeMagicDamage(this.actionPoints);
     }
 
-    public void heal(Unit unit) throws InvalidCastException {
-        throw new InvalidCastException();
-    }
 }

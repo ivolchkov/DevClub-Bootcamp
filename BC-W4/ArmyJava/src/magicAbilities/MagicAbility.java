@@ -33,6 +33,10 @@ public class MagicAbility {
         this.attackSpell.action(enemy);
     }
 
+    public void cast() throws OutOfManaException, InvalidCastException {
+        throw new InvalidCastException();
+    }
+
     public void heal(Unit target) throws OutOfManaException, InvalidCastException {
         owner.ensureIsAlive();
         owner.spendMana(this.attackSpell.getManaCost());

@@ -1,6 +1,7 @@
 package spells;
 
 import exceptions.InvalidCastException;
+import units.Demon;
 import units.Unit;
 
 public abstract class Spell {
@@ -32,8 +33,16 @@ public abstract class Spell {
         return this.isAttack;
     }
 
-    public abstract void action(Unit enemy) throws InvalidCastException;
-    public abstract void heal(Unit target) throws InvalidCastException;
+    public void action(Unit enemy) throws InvalidCastException {
+        throw new InvalidCastException();
+    }
+    public void heal(Unit target) throws InvalidCastException {
+        throw new InvalidCastException();
+    }
+
+    public Demon action() throws InvalidCastException {
+        throw new InvalidCastException();
+    }
 
 }
 

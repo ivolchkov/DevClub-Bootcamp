@@ -25,7 +25,7 @@ public abstract class SpellCaster extends Unit {
         }
     }
 
-    public void addSpell(Spell spell) {
+    void addSpell(Spell spell) {
         this.SpellBook.put(spell.getSpellName(), spell);
     }
 
@@ -53,4 +53,7 @@ public abstract class SpellCaster extends Unit {
         this.magicAbility.heal();
     }
 
+    public void createDemon(Demon demon) throws InvalidCastException {
+        throw new InvalidCastException();
+    }
 }

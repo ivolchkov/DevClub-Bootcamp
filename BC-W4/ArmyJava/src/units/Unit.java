@@ -2,21 +2,33 @@ package units;
 
 import abilities.Ability;
 import actions.Action;
-import exceptions.*;
+import exceptions.InvalidInfectException;
+import exceptions.InvalidTransformException;
+import exceptions.UnitIsDead;
+import interfaces.Observer;
+import interfaces.Subject;
 import states.State;
 
+import java.util.ArrayList;
+import java.util.List;
 
-abstract public class Unit {
+abstract public class Unit implements Subject {
     protected Ability ability;
     protected Action action;
     protected State state;
+    protected List<Observer> observers = new ArrayList<>();
 
     public Unit (String name, int hp, int dmg, double magicResist, String title, String type ) {
         this.state = new State(name, hp, dmg, magicResist, title, type);
     }
 
-    public void ensureIsAlive() {
-        this.state.ensureIsAlive();
+    public void ensureIsAlive() throws UnitIsDead {
+        try {
+            this.state.ensureIsAlive();
+        } catch (UnitIsDead e) {
+            this.notifyObservers();
+            e.printStackTrace();
+        }
     }
 
     public int getDamage() {
@@ -71,15 +83,15 @@ abstract public class Unit {
         this.state.setHitPointsLimit(hp);
     }
 
-    public void takeDamage(int damage) {
+    public void takeDamage(int damage) throws UnitIsDead {
         this.state.takeDamage(damage);
     }
 
-    public void takeMagicDamage(int damage) {
+    public void takeMagicDamage(int damage) throws UnitIsDead {
         this.state.takeMagicDamage(damage);
     }
 
-    public void addHitPoints(int hp) {
+    public void addHitPoints(int hp) throws UnitIsDead {
         this.state.addHitPoints(hp);
     }
 
@@ -109,5 +121,20 @@ abstract public class Unit {
 
     public String toString() {
         return "Unit: " + this.state;
+    }
+
+    public void attach(Observer observer) {
+        this.observers.add(observer);
+    }
+
+    public void detach(Observer observer) {
+        this.observers.remove(observer);
+    }
+
+    public void notifyObservers() throws UnitIsDead {
+        for (Observer obs:
+             this.observers) {
+            obs.update(this);
+        }
     }
 }

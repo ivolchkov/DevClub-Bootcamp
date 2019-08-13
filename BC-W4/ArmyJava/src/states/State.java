@@ -1,6 +1,7 @@
 package states;
 
 import exceptions.OutOfManaException;
+import exceptions.UnitIsDead;
 
 public class State {
     protected int hitPoints;
@@ -55,13 +56,13 @@ public class State {
         this.hitPointsLimit = hp;
     }
 
-    public void ensureIsAlive() {
+    public void ensureIsAlive() throws UnitIsDead  {
         if ( this.hitPoints == 0 ) {
-            System.out.println("Unit is dead!");
+            throw new UnitIsDead();
         }
     }
 
-    protected void _takeDamage(int dmg) {
+    protected void _takeDamage(int dmg) throws UnitIsDead {
         this.ensureIsAlive();
 
         this.hitPoints -= dmg;
@@ -71,17 +72,17 @@ public class State {
         }
     }
 
-    public void takeDamage(int dmg) {
+    public void takeDamage(int dmg) throws UnitIsDead  {
         this._takeDamage(dmg);
     }
 
-    public void takeMagicDamage(int dmg) {
+    public void takeMagicDamage(int dmg) throws UnitIsDead {
         double reducedDamage = (1 - this.magicResist) * dmg;
 
         this._takeDamage((int)reducedDamage);
     }
 
-    public void addHitPoints(int hp) {
+    public void addHitPoints(int hp) throws UnitIsDead {
         this.ensureIsAlive();
 
         this.hitPoints += hp;
